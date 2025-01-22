@@ -344,3 +344,129 @@ public function toArray($request) {
     ];
 }
 ```
+
+# Laravel Artisan Built-in Methods
+
+## Output Methods
+
+- **`info($string)`**  
+  Display an informational message in the console.  
+  ```php
+  $this->info('Informational message');
+  ```
+
+- **`line($string)`**  
+  Output a plain text line without any formatting.  
+  ```php
+  $this->line('Plain text message');
+  ```
+
+- **`error($string)`**  
+  Display an error message in the console (usually in red text).  
+  ```php
+  $this->error('Error message');
+  ```
+
+- **`warn($string)`**  
+  Display a warning message in the console (usually in yellow text).  
+  ```php
+  $this->warn('Warning message');
+  ```
+
+## Input Methods
+
+- **`ask($question, $default = null)`**  
+  Prompt the user for input and return the response.  
+  ```php
+  $name = $this->ask('What is your name?');
+  ```
+
+- **`askWithCompletion($question, $choices, $default = null)`**  
+  Provide auto-completion for user input.  
+  ```php
+  $color = $this->askWithCompletion('Choose a color', ['red', 'blue', 'green']);
+  ```
+
+- **`confirm($question, $default = false)`**  
+  Ask a yes/no question and return a boolean.  
+  ```php
+  if ($this->confirm('Do you wish to continue?')) {
+      $this->info('Continuing...');
+  }
+  ```
+
+- **`anticipate($question, $choices, $default = null)`**  
+  Provide suggestions (auto-completion) but allow free-form input.  
+  ```php
+  $answer = $this->anticipate('Enter your favorite fruit', ['apple', 'banana', 'orange']);
+  ```
+
+- **`choice($question, $choices, $default = null, $multiple = false)`**  
+  Offer a list of options for the user to choose from.  
+  ```php
+  $option = $this->choice('What is your role?', ['Admin', 'User', 'Guest'], 0);
+  ```
+
+## Arguments and Options
+
+- **`argument($key = null)`**  
+  Retrieve the value of a specific argument (or all arguments if `$key` is null).  
+  ```php
+  $name = $this->argument('name');
+  ```
+
+- **`option($key = null)`**  
+  Retrieve the value of a specific option (or all options if `$key` is null).  
+  ```php
+  $verbose = $this->option('verbose');
+  ```
+
+## Progress Methods
+
+- **`output->progressStart($totalSteps)`**  
+  Start a progress bar.  
+  ```php
+  $this->output->progressStart(100);
+  ```
+
+- **`output->progressAdvance($step = 1)`**  
+  Advance the progress bar by a step.  
+  ```php
+  $this->output->progressAdvance();
+  ```
+
+- **`output->progressFinish()`**  
+  Complete the progress bar.  
+  ```php
+  $this->output->progressFinish();
+  ```
+
+## Table Output
+
+- **`table($headers, $rows)`**  
+  Display a table in the console.  
+  ```php
+  $this->table(['Name', 'Email'], [['John Doe', 'john@example.com'], ['Jane Doe', 'jane@example.com']]);
+  ```
+
+## Miscellaneous
+
+- **`call($command, $arguments = [])`**  
+  Call another Artisan command.  
+  ```php
+  $this->call('migrate', ['--force' => true]);
+  ```
+
+- **`callSilent($command, $arguments = [])`**  
+  Call another Artisan command without displaying output.  
+  ```php
+  $this->callSilent('migrate');
+  ```
+
+- **`newLine($count = 1)`**  
+  Output one or more blank lines.  
+  ```php
+  $this->newLine(2);
+  ```
+
+
